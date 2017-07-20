@@ -1,5 +1,5 @@
 /**
- * Copyright IBM Corporation 2016
+ * Copyright IBM Corporation 2017
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,18 +17,41 @@
 import Foundation
 import RestKit
 
-/** An identified language. */
-public struct IdentifiedLanguage: JSONDecodable {
-    
-    /// The code of the identified language.
+/** IdentifiedLanguage. */
+public struct IdentifiedLanguage: JSONDecodable, JSONEncodable {
+
+    /// The code for an identified language.
     public let language: String
-    
-    /// The confidence score of the identified language.
+
+    /// The confidence score for the identified language.
     public let confidence: Double
 
-    /// Used internally to initialize an `IdentifiedLanguage` model from JSON.
+    /**
+     Initialize a `IdentifiedLanguage` with member variables.
+
+     - parameter language: The code for an identified language.
+     - parameter confidence: The confidence score for the identified language.
+
+     - returns: An initialized `IdentifiedLanguage`.
+    */
+    public init(language: String, confidence: Double) {
+        self.language = language
+        self.confidence = confidence
+    }
+
+    // MARK: JSONDecodable
+    /// Used internally to initialize a `IdentifiedLanguage` model from JSON.
     public init(json: JSON) throws {
         language = try json.getString(at: "language")
         confidence = try json.getDouble(at: "confidence")
+    }
+
+    // MARK: JSONEncodable
+    /// Used internally to serialize a `IdentifiedLanguage` model to JSON.
+    public func toJSONObject() -> Any {
+        var json = [String: Any]()
+        json["language"] = language
+        json["confidence"] = confidence
+        return json
     }
 }

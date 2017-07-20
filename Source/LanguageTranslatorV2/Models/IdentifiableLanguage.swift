@@ -1,5 +1,5 @@
 /**
- * Copyright IBM Corporation 2016
+ * Copyright IBM Corporation 2017
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,18 +17,41 @@
 import Foundation
 import RestKit
 
-/** A language that can be identified by the Language Translator service. */
-public struct IdentifiableLanguage: JSONDecodable {
-    
-    /// The code of the identifiable language.
+/** IdentifiableLanguage. */
+public struct IdentifiableLanguage: JSONDecodable, JSONEncodable {
+
+    /// The code for an identifiable language.
     public let language: String
-    
+
     /// The name of the identifiable language.
     public let name: String
 
-    /// Used internally to initialize an `IdentifiableLanguage` model from JSON.
+    /**
+     Initialize a `IdentifiableLanguage` with member variables.
+
+     - parameter language: The code for an identifiable language.
+     - parameter name: The name of the identifiable language.
+
+     - returns: An initialized `IdentifiableLanguage`.
+    */
+    public init(language: String, name: String) {
+        self.language = language
+        self.name = name
+    }
+
+    // MARK: JSONDecodable
+    /// Used internally to initialize a `IdentifiableLanguage` model from JSON.
     public init(json: JSON) throws {
         language = try json.getString(at: "language")
         name = try json.getString(at: "name")
+    }
+
+    // MARK: JSONEncodable
+    /// Used internally to serialize a `IdentifiableLanguage` model to JSON.
+    public func toJSONObject() -> Any {
+        var json = [String: Any]()
+        json["language"] = language
+        json["name"] = name
+        return json
     }
 }
