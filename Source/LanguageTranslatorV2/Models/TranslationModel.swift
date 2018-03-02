@@ -33,31 +33,31 @@ public struct TranslationModel {
         case error = "error"
     }
 
-    /// A globally unique string that identifies the underlying model that is used for translation. This string contains all the information about source language, target language, domain, and various other related configurations.
+    /// A globally unique string that identifies the underlying model that is used for translation.
     public var modelID: String
 
-    /// If a model is trained by a user, there might be an optional “name” parameter attached during training to help the user identify the model.
+    /// Optional name that can be specified when the model is created.
     public var name: String?
 
-    /// Source language in two letter language code. Use the five letter code when clarifying between multiple supported languages. When model_id is used directly, it will override the source-target language combination. Also, when a two letter language code is used, but no suitable default is found, it returns an error.
+    /// Translation source language code.
     public var source: String?
 
-    /// Target language in two letter language code.
+    /// Translation target language code.
     public var target: String?
 
-    /// If this model is a custom model, this returns the base model that it is trained on. For a base model, this response value is empty.
+    /// Model ID of the base model that was used to customize the model. If the model is not a custom model, this will be an empty string.
     public var baseModelID: String?
 
     /// The domain of the translation model.
     public var domain: String?
 
-    /// Whether this model can be used as a base for customization. Customized models are not further customizable, and we don't allow the customization of certain base models.
+    /// Whether this model can be used as a base for customization. Customized models are not further customizable, and some base models are not customizable.
     public var customizable: Bool?
 
-    /// Whether this model is considered a default model and is used when the source and target languages are specified without the model_id.
+    /// Whether or not the model is a default model. A default model is the model for a given language pair that will be used when that language pair is specified in the source and target parameters.
     public var defaultModel: Bool?
 
-    /// Returns the ID of the Language Translator service instance that created the model, or an empty string if it is a model that is trained by IBM.
+    /// Either an empty string, indicating the model is not a custom model, or the ID of the service instance that created the model.
     public var owner: String?
 
     /// Availability of a model.
@@ -66,15 +66,15 @@ public struct TranslationModel {
     /**
      Initialize a `TranslationModel` with member variables.
 
-     - parameter modelID: A globally unique string that identifies the underlying model that is used for translation. This string contains all the information about source language, target language, domain, and various other related configurations.
-     - parameter name: If a model is trained by a user, there might be an optional “name” parameter attached during training to help the user identify the model.
-     - parameter source: Source language in two letter language code. Use the five letter code when clarifying between multiple supported languages. When model_id is used directly, it will override the source-target language combination. Also, when a two letter language code is used, but no suitable default is found, it returns an error.
-     - parameter target: Target language in two letter language code.
-     - parameter baseModelID: If this model is a custom model, this returns the base model that it is trained on. For a base model, this response value is empty.
+     - parameter modelID: A globally unique string that identifies the underlying model that is used for translation.
+     - parameter name: Optional name that can be specified when the model is created.
+     - parameter source: Translation source language code.
+     - parameter target: Translation target language code.
+     - parameter baseModelID: Model ID of the base model that was used to customize the model. If the model is not a custom model, this will be an empty string.
      - parameter domain: The domain of the translation model.
-     - parameter customizable: Whether this model can be used as a base for customization. Customized models are not further customizable, and we don't allow the customization of certain base models.
-     - parameter defaultModel: Whether this model is considered a default model and is used when the source and target languages are specified without the model_id.
-     - parameter owner: Returns the ID of the Language Translator service instance that created the model, or an empty string if it is a model that is trained by IBM.
+     - parameter customizable: Whether this model can be used as a base for customization. Customized models are not further customizable, and some base models are not customizable.
+     - parameter defaultModel: Whether or not the model is a default model. A default model is the model for a given language pair that will be used when that language pair is specified in the source and target parameters.
+     - parameter owner: Either an empty string, indicating the model is not a custom model, or the ID of the service instance that created the model.
      - parameter status: Availability of a model.
 
      - returns: An initialized `TranslationModel`.

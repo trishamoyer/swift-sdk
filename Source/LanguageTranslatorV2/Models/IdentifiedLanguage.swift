@@ -19,7 +19,7 @@ import Foundation
 /** IdentifiedLanguage. */
 public struct IdentifiedLanguage {
 
-    /// The code for an identified language.
+    /// The language code for an identified language.
     public var language: String
 
     /// The confidence score for the identified language.
@@ -28,7 +28,7 @@ public struct IdentifiedLanguage {
     /**
      Initialize a `IdentifiedLanguage` with member variables.
 
-     - parameter language: The code for an identified language.
+     - parameter language: The language code for an identified language.
      - parameter confidence: The confidence score for the identified language.
 
      - returns: An initialized `IdentifiedLanguage`.

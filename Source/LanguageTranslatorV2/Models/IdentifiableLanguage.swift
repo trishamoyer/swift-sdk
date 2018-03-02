@@ -19,7 +19,7 @@ import Foundation
 /** IdentifiableLanguage. */
 public struct IdentifiableLanguage {
 
-    /// The code for an identifiable language.
+    /// The language code for an identifiable language.
     public var language: String
 
     /// The name of the identifiable language.
@@ -28,7 +28,7 @@ public struct IdentifiableLanguage {
     /**
      Initialize a `IdentifiableLanguage` with member variables.
 
-     - parameter language: The code for an identifiable language.
+     - parameter language: The language code for an identifiable language.
      - parameter name: The name of the identifiable language.
 
      - returns: An initialized `IdentifiableLanguage`.

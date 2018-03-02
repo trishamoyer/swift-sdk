@@ -19,21 +19,21 @@ import Foundation
 /** TranslationResult. */
 public struct TranslationResult {
 
-    /// Number of words of the complete input text.
+    /// Number of words in the input text.
     public var wordCount: Int
 
-    /// Number of characters of the complete input text.
+    /// Number of characters in the input text.
     public var characterCount: Int
 
-    /// List of translation output in UTF-8, corresponding to the list of input text.
+    /// List of translation output in UTF-8, corresponding to the input text entries.
     public var translations: [Translation]
 
     /**
      Initialize a `TranslationResult` with member variables.
 
-     - parameter wordCount: Number of words of the complete input text.
-     - parameter characterCount: Number of characters of the complete input text.
-     - parameter translations: List of translation output in UTF-8, corresponding to the list of input text.
+     - parameter wordCount: Number of words in the input text.
+     - parameter characterCount: Number of characters in the input text.
+     - parameter translations: List of translation output in UTF-8, corresponding to the input text entries.
 
      - returns: An initialized `TranslationResult`.
     */

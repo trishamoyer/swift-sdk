@@ -19,25 +19,25 @@ import Foundation
 /** TranslateRequest. */
 public struct TranslateRequest {
 
-    /// Input text in UTF-8 encoding. It is a list so that multiple paragraphs can be submitted. Also accept a single string, instead of an array, as valid input.
+    /// Input text in UTF-8 encoding. Multiple entries will result in multiple translations in the response.
     public var text: [String]
 
-    /// The unique model_id of the translation model being used to translate text. The model_id inherently specifies source language, target language, and domain. If the model_id is specified, there is no need for the source and target parameters and the values are ignored.
+    /// Model ID of the translation model to use. If this is specified, the `source` and `target` parameters will be ignored. The method requires either a model ID or both the `source` and `target` parameters.
     public var modelID: String?
 
-    /// Used in combination with target as an alternative way to select the model for translation. When target and source are set, and model_id is not set, the system chooses a default model with the right language pair to translate (usually the model based on the news domain).
+    /// Language code of the source text language. Use with `target` as an alternative way to select a translation model. When `source` and `target` are set, and a model ID is not set, the system chooses a default model for the language pair (usually the model based on the news domain).
     public var source: String?
 
-    /// Used in combination with source as an alternative way to select the model for translation. When target and source are set, and model_id is not set, the system chooses a default model with the right language pair to translate (usually the model based on the news domain).
+    /// Language code of the translation target language. Use with source as an alternative way to select a translation model.
     public var target: String?
 
     /**
      Initialize a `TranslateRequest` with member variables.
 
-     - parameter text: Input text in UTF-8 encoding. It is a list so that multiple paragraphs can be submitted. Also accept a single string, instead of an array, as valid input.
-     - parameter modelID: The unique model_id of the translation model being used to translate text. The model_id inherently specifies source language, target language, and domain. If the model_id is specified, there is no need for the source and target parameters and the values are ignored.
-     - parameter source: Used in combination with target as an alternative way to select the model for translation. When target and source are set, and model_id is not set, the system chooses a default model with the right language pair to translate (usually the model based on the news domain).
-     - parameter target: Used in combination with source as an alternative way to select the model for translation. When target and source are set, and model_id is not set, the system chooses a default model with the right language pair to translate (usually the model based on the news domain).
+     - parameter text: Input text in UTF-8 encoding. Multiple entries will result in multiple translations in the response.
+     - parameter modelID: Model ID of the translation model to use. If this is specified, the `source` and `target` parameters will be ignored. The method requires either a model ID or both the `source` and `target` parameters.
+     - parameter source: Language code of the source text language. Use with `target` as an alternative way to select a translation model. When `source` and `target` are set, and a model ID is not set, the system chooses a default model for the language pair (usually the model based on the news domain).
+     - parameter target: Language code of the translation target language. Use with source as an alternative way to select a translation model.
 
      - returns: An initialized `TranslateRequest`.
     */
